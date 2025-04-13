@@ -33,9 +33,12 @@ export interface DraggableShapeInfo {
     shapeId: string;
     initialX: number;
     initialY: number;
-    currentX: number;
-    currentY: number;
+    startClientX: number;
+    startClientY: number;
+    currentClientX: number;
+    currentClientY: number;
     isDragging: boolean;
+    returningToOrigin?: boolean;
 }
 
 /**

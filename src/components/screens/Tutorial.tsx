@@ -2,98 +2,26 @@
  * Экран обучения (туториал)
  */
 import React, { FC, useState } from 'react';
-import styled from 'styled-components';
 import Layout from '../ui/Layout';
 import Button from '../ui/Button';
-import { Shape as ShapeType } from '../../types/game';
 import { ShapeType as ShapeTypeEnum } from '../../types/game';
 import Shape from '../game/Shape';
 import Grid from '../game/Grid';
-import { PRIMARY, SECONDARY, SHADOWS, GRID_BACKGROUND } from '../../constants/colors';
 import { createEmptyGrid } from '../../core/gameLogic';
 import { getTutorialShapes } from '../../core/shapeGenerator';
-
-// Стилизованные компоненты
-const TutorialContainer = styled.div`
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-`;
-
-const StepContainer = styled.div`
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: ${SHADOWS.MEDIUM};
-    padding: 24px;
-    margin-bottom: 24px;
-`;
-
-const StepTitle = styled.h2`
-    font-size: 24px;
-    margin-bottom: 16px;
-    color: ${PRIMARY};
-`;
-
-const StepContent = styled.div`
-    margin-bottom: 20px;
-    line-height: 1.6;
-    font-size: 16px;
-`;
-
-const DemoArea = styled.div`
-    background-color: ${GRID_BACKGROUND};
-    border-radius: 8px;
-    padding: 24px;
-    margin: 20px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-`;
-
-const ShapesContainer = styled.div`
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 16px 0;
-`;
-
-const ShapeWrapper = styled.div`
-    padding: 16px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: ${SHADOWS.SMALL};
-`;
-
-const GridWrapper = styled.div`
-    width: 100%;
-    max-width: 400px;
-`;
-
-const NavigationButtons = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin-top: 24px;
-`;
-
-const StepIndicator = styled.div`
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin: 24px 0;
-`;
-
-const StepDot = styled.div<{ active: boolean; completed: boolean }>`
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: ${props => 
-        props.active ? PRIMARY : 
-        props.completed ? SECONDARY : '#ddd'
-    };
-    transition: all 0.3s ease;
-`;
+import {
+    TutorialContainer,
+    StepContainer,
+    StepTitle,
+    StepContent,
+    DemoArea,
+    ShapesContainer,
+    ShapeWrapper,
+    GridWrapper,
+    NavigationButtons,
+    StepIndicator,
+    StepDot
+} from './Tutorial.styles';
 
 // Данные шагов туториала
 const tutorialSteps = [
@@ -147,16 +75,11 @@ interface Props {
 }
 
 export const Tutorial: FC<Props> = ({ onFinish, onSkip }) => {
-    // Состояние для отслеживания текущего шага
     const [currentStep, setCurrentStep] = useState(0);
     
-    // Получаем демонстрационные фигуры
     const demoShapes = getTutorialShapes();
-    
-    // Создаем пустую сетку
     const grid = createEmptyGrid();
     
-    // Обработчики навигации
     const goToNextStep = () => {
         if (currentStep < tutorialSteps.length - 1) {
             setCurrentStep(currentStep + 1);
@@ -171,10 +94,7 @@ export const Tutorial: FC<Props> = ({ onFinish, onSkip }) => {
         }
     };
     
-    // Получаем текущий шаг
     const currentStepData = tutorialSteps[currentStep];
-    
-    // Функции-заглушки для демонстрационных компонентов
     const dummyFunction = () => {};
     
     return (
