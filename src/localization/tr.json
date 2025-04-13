@@ -1,0 +1,83 @@
+{
+    "app": {
+        "title": "Tetris Blokları",
+        "loading": "Yükleniyor...",
+        "version": "Sürüm 1.0"
+    },
+    "menu": {
+        "play": "Oyna",
+        "tutorial": "Öğretici",
+        "settings": "Ayarlar",
+        "achievements": "Başarılar",
+        "leaderboard": "Skor Tablosu"
+    },
+    "game": {
+        "score": "Skor",
+        "combo": "Kombo",
+        "highScore": "En Yüksek Skor",
+        "newGame": "Yeni Oyun",
+        "pause": "Duraklat",
+        "resume": "Devam Et",
+        "quit": "Çıkış"
+    },
+    "tutorial": {
+        "title": "Öğretici",
+        "next": "İleri",
+        "previous": "Geri",
+        "skip": "Atla",
+        "finish": "Bitir",
+        "steps": {
+            "1": {
+                "title": "Hoş Geldiniz!",
+                "text": "'Tetris Blokları'na hoş geldiniz! Burada 8x8 ızgara üzerine şekiller yerleştirecek ve sıraları temizleyerek puan kazanacaksınız."
+            },
+            "2": {
+                "title": "Şekiller",
+                "text": "Her zaman seçebileceğiniz 3 şekil var. Bir şekil seçin ve oyun alanına sürükleyin."
+            },
+            "3": {
+                "title": "Şekilleri Yerleştirme",
+                "text": "Şekli oyun tahtasına sürükleyin. Yeşil renk şeklin yerleştirilebileceği, kırmızı ise yerleştirilemeyeceği anlamına gelir."
+            },
+            "4": {
+                "title": "Satırları Temizleme",
+                "text": "Bir satır veya sütunu tamamen doldurduğunuzda, temizlenir ve puan kazanırsınız. Bir kerede birden fazla satır temizlemeye çalışın!"
+            },
+            "5": {
+                "title": "Kombo ve Çarpanlar",
+                "text": "Ardışık satır temizlemeleri size kombo bonusu verir ve aldığınız puan sayısını artırır."
+            },
+            "6": {
+                "title": "Oyun Sonu",
+                "text": "Oyun, tahtaya herhangi bir şekil yerleştirmek artık mümkün olmadığında sona erer. İyi şanslar!"
+            }
+        }
+    },
+    "settings": {
+        "title": "Ayarlar",
+        "language": "Dil",
+        "sound": "Ses",
+        "music": "Müzik",
+        "vibration": "Titreşim",
+        "darkMode": "Karanlık Mod",
+        "save": "Kaydet",
+        "reset": "Sıfırla"
+    },
+    "achievements": {
+        "title": "Başarılar",
+        "unlocked": "Açık",
+        "locked": "Kilitli",
+        "progress": "İlerleme"
+    },
+    "gameOver": {
+        "title": "Oyun Bitti",
+        "score": "Skorunuz",
+        "highScore": "En Yüksek Skor",
+        "newHighScore": "Yeni En Yüksek Skor!",
+        "continue": "Devam Et",
+        "watchAd": "Bonus Şekiller için Reklam İzle",
+        "restart": "Tekrar Oyna",
+        "share": "Skoru Paylaş",
+        "menu": "Ana Menü"
+    }
+}

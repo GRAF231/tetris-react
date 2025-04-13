@@ -1,0 +1,83 @@
+{
+    "app": {
+        "title": "Tetris Blocks",
+        "loading": "Loading...",
+        "version": "Version 1.0"
+    },
+    "menu": {
+        "play": "Play",
+        "tutorial": "Tutorial",
+        "settings": "Settings",
+        "achievements": "Achievements",
+        "leaderboard": "Leaderboard"
+    },
+    "game": {
+        "score": "Score",
+        "combo": "Combo",
+        "highScore": "High Score",
+        "newGame": "New Game",
+        "pause": "Pause",
+        "resume": "Resume",
+        "quit": "Quit"
+    },
+    "tutorial": {
+        "title": "Tutorial",
+        "next": "Next",
+        "previous": "Previous",
+        "skip": "Skip",
+        "finish": "Finish",
+        "steps": {
+            "1": {
+                "title": "Welcome!",
+                "text": "Welcome to 'Tetris Blocks'! Here you'll place shapes on an 8x8 grid and clear lines to score points."
+            },
+            "2": {
+                "title": "Shapes",
+                "text": "You always have 3 shapes to choose from. Select a shape and drag it to the game field."
+            },
+            "3": {
+                "title": "Placing Shapes",
+                "text": "Drag the shape onto the game board. Green color means you can place the shape, red means you can't."
+            },
+            "4": {
+                "title": "Clearing Lines",
+                "text": "When you fill an entire row or column, they get cleared, and you earn points. Try to clear multiple lines at once!"
+            },
+            "5": {
+                "title": "Combos and Multipliers",
+                "text": "Consecutive line clears give you a combo bonus, increasing the number of points you receive."
+            },
+            "6": {
+                "title": "Game Over",
+                "text": "The game ends when it's no longer possible to place any shape on the board. Good luck!"
+            }
+        }
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "sound": "Sound",
+        "music": "Music",
+        "vibration": "Vibration",
+        "darkMode": "Dark Mode",
+        "save": "Save",
+        "reset": "Reset"
+    },
+    "achievements": {
+        "title": "Achievements",
+        "unlocked": "Unlocked",
+        "locked": "Locked",
+        "progress": "Progress"
+    },
+    "gameOver": {
+        "title": "Game Over",
+        "score": "Your Score",
+        "highScore": "High Score",
+        "newHighScore": "New High Score!",
+        "continue": "Continue",
+        "watchAd": "Watch Ad for Bonus Shapes",
+        "restart": "Play Again",
+        "share": "Share Score",
+        "menu": "Main Menu"
+    }
+}
