@@ -15,7 +15,7 @@ interface Props {
     selectedShape: Shape | null;
     ghostPosition: { row: number; col: number; valid: boolean } | null;
     highlightedLines: LineHighlight[];
-    onCellClick: (row: number, col: number) => void;
+    onCellClick: (row: number, col: number, shape: Shape | null) => void;
 }
 
 export const Grid: FC<Props> = ({
@@ -58,7 +58,7 @@ export const Grid: FC<Props> = ({
                                 ]
                             )
                         }
-                        onClick={() => onCellClick(rowIndex, colIndex)}
+                        onClick={() => onCellClick(rowIndex, colIndex, selectedShape)}
                         data-row={rowIndex}
                         data-col={colIndex}
                     >

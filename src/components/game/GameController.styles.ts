@@ -37,7 +37,7 @@ export const MobileLayoutContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: calc(100vh - 80px); // Учитываем уменьшенную шапку
+    height: calc(100vh - 90px); // Учитываем уменьшенную шапку
 
     @media (min-width: 768px) {
         flex-direction: row;
