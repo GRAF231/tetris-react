@@ -2,14 +2,7 @@
  * Основной макет приложения
  */
 import React, { FC, ReactNode } from 'react';
-import {
-    LayoutContainer,
-    Header,
-    Logo,
-    HeaderActions,
-    MainContent,
-    Footer
-} from './Layout.styles';
+import { LayoutContainer, Header, Logo, HeaderActions, MainContent, Footer } from './Layout.styles';
 
 interface Props {
     children: ReactNode;
@@ -30,7 +23,7 @@ export const Layout: FC<Props> = ({
     showFooter = true,
     showHeader = true,
     className,
-    compact = false
+    compact = false,
 }) => {
     return (
         <LayoutContainer className={className}>
@@ -43,12 +36,12 @@ export const Layout: FC<Props> = ({
                             </>
                         )}
                     </Logo>
-                    
+
                     {headerActions && <HeaderActions>{headerActions}</HeaderActions>}
                 </Header>
             )}
             <MainContent $compact={compact}>{children}</MainContent>
-            
+
             {showFooter && (
                 <Footer>
                     {footerContent || (

@@ -7,13 +7,7 @@ import Button from '../ui/Button';
 import GameController from '../game/GameController';
 import Modal from '../ui/Modal';
 import { useScore } from '../../hooks/useScore';
-import {
-    GameContainer,
-    HeaderActions,
-    PauseModal,
-    PauseTitle,
-    PauseButtons
-} from './Game.styles';
+import { GameContainer, HeaderActions, PauseModal, PauseButtons } from './Game.styles';
 
 interface Props {
     onBackToMenu: () => void;
@@ -23,26 +17,26 @@ interface Props {
 export const Game: FC<Props> = ({ onBackToMenu, onShareScore }) => {
     const [showExitConfirmation, setShowExitConfirmation] = useState(false);
     const { score } = useScore();
-    
+
     const handleExit = () => {
         setShowExitConfirmation(true);
     };
-    
+
     const confirmExit = () => {
         setShowExitConfirmation(false);
         onBackToMenu();
     };
-    
+
     const cancelExit = () => {
         setShowExitConfirmation(false);
     };
-    
+
     const handleShareScore = () => {
         if (onShareScore) {
             onShareScore(score);
         }
     };
-    
+
     const headerActions = (
         <HeaderActions>
             <Button variant="outline" size="small" onClick={handleExit}>
@@ -50,7 +44,7 @@ export const Game: FC<Props> = ({ onBackToMenu, onShareScore }) => {
             </Button>
         </HeaderActions>
     );
-    
+
     return (
         <Layout headerActions={headerActions} compact={true} showFooter={false}>
             <GameContainer>
@@ -58,7 +52,7 @@ export const Game: FC<Props> = ({ onBackToMenu, onShareScore }) => {
                     onShare={onShareScore ? handleShareScore : undefined}
                     onMainMenu={onBackToMenu}
                 />
-                
+
                 {/* Модальное окно подтверждения выхода */}
                 <Modal
                     isOpen={showExitConfirmation}
@@ -68,23 +62,18 @@ export const Game: FC<Props> = ({ onBackToMenu, onShareScore }) => {
                 >
                     <PauseModal>
                         <p>Вы уверены, что хотите выйти? Текущий прогресс будет потерян.</p>
-                        
+
                         <PauseButtons>
-                            <Button 
-                                variant="secondary" 
-                                size="medium" 
-                                fullWidth 
+                            <Button
+                                variant="secondary"
+                                size="medium"
+                                fullWidth
                                 onClick={confirmExit}
                             >
                                 Выйти
                             </Button>
-                            
-                            <Button 
-                                variant="outline" 
-                                size="medium" 
-                                fullWidth 
-                                onClick={cancelExit}
-                            >
+
+                            <Button variant="outline" size="medium" fullWidth onClick={cancelExit}>
                                 Отмена
                             </Button>
                         </PauseButtons>

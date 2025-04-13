@@ -10,7 +10,7 @@ import {
     ModalTitle,
     CloseButton,
     ModalContent,
-    ModalFooter
+    ModalFooter,
 } from './Modal.styles';
 
 export type ModalSize = 'small' | 'medium' | 'large';
@@ -33,52 +33,52 @@ export const Modal: FC<ModalProps> = ({
     hideCloseButton = false,
     closeOnOverlayClick = true,
     footer,
-    children
+    children,
 }) => {
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
         }
-        
+
         return () => {
             document.body.style.overflow = 'auto';
         };
     }, [isOpen]);
-    
+
     const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget && closeOnOverlayClick) {
             onClose();
         }
     };
-    
+
     useEffect(() => {
         const handleEscapeKey = (e: KeyboardEvent) => {
             if (e.key === 'Escape' && isOpen) {
                 onClose();
             }
         };
-        
+
         document.addEventListener('keydown', handleEscapeKey);
-        
+
         return () => {
             document.removeEventListener('keydown', handleEscapeKey);
         };
     }, [isOpen, onClose]);
-    
+
     if (!isOpen) return null;
-    
+
     return (
         <ModalOverlay onClick={handleOverlayClick}>
-            <ModalContainer size={size} onClick={e => e.stopPropagation()}>
+            <ModalContainer size={size} onClick={(e) => e.stopPropagation()}>
                 {title && (
                     <ModalHeader hasClose={!hideCloseButton}>
                         <ModalTitle>{title}</ModalTitle>
                         {!hideCloseButton && <CloseButton onClick={onClose} />}
                     </ModalHeader>
                 )}
-                
+
                 <ModalContent>{children}</ModalContent>
-                
+
                 {footer && <ModalFooter>{footer}</ModalFooter>}
             </ModalContainer>
         </ModalOverlay>
@@ -104,8 +104,8 @@ export const ModalWithButtons: FC<
             <Button variant="outline" onClick={modalProps.onClose}>
                 {cancelText}
             </Button>
-            <Button 
-                variant={danger ? 'secondary' : 'primary'} 
+            <Button
+                variant={danger ? 'secondary' : 'primary'}
                 onClick={() => {
                     if (onConfirm) onConfirm();
                     modalProps.onClose();
@@ -115,7 +115,7 @@ export const ModalWithButtons: FC<
             </Button>
         </>
     );
-    
+
     return <Modal {...modalProps} footer={footer} />;
 };
 

@@ -19,14 +19,16 @@ export const GridContainer = styled.div`
 `;
 
 export const Cell = styled.div<{ $filled: boolean; $color?: string; $isHighlighted: boolean }>`
-    background-color: ${props => (props.$filled ? props.$color : GRID_BACKGROUND)};
+    background-color: ${(props) => (props.$filled ? props.$color : GRID_BACKGROUND)};
     border-radius: 4px;
     transition: background-color 0.2s ease;
     aspect-ratio: 1 / 1;
     position: relative;
-    cursor: ${props => (props.$isHighlighted ? 'pointer' : 'default')};
-    
-    ${props => props.$isHighlighted && `
+    cursor: ${(props) => (props.$isHighlighted ? 'pointer' : 'default')};
+
+    ${(props) =>
+        props.$isHighlighted &&
+        `
         &::after {
             content: '';
             position: absolute;
@@ -39,11 +41,11 @@ export const Cell = styled.div<{ $filled: boolean; $color?: string; $isHighlight
             pointer-events: none;
         }
     `}
-    
+
     &.clearing {
         animation: clear-cell 0.5s forwards;
     }
-    
+
     @keyframes clear-cell {
         0% {
             transform: scale(1);
@@ -67,7 +69,7 @@ export const GhostShape = styled.div<{ valid: boolean }>`
     width: 100%;
     height: 100%;
     border-radius: 4px;
-    background-color: ${props => props.valid ? 'rgba(0, 255, 0, 0.3)' : 'rgba(255, 0, 0, 0.3)'};
+    background-color: ${(props) => (props.valid ? 'rgba(0, 255, 0, 0.3)' : 'rgba(255, 0, 0, 0.3)')};
     pointer-events: none;
     z-index: 2;
 `;
@@ -77,13 +79,16 @@ export const LineHighlighter = styled.div<{ type: 'row' | 'column'; index: numbe
     background-color: rgba(255, 255, 0, 0.3);
     z-index: 1;
     pointer-events: none;
-    
-    ${props => props.type === 'row' ? `
+
+    ${(props) =>
+        props.type === 'row'
+            ? `
         top: ${(props.index * 100) / GRID_SIZE}%;
         left: 0;
         width: 100%;
         height: ${100 / GRID_SIZE}%;
-    ` : `
+    `
+            : `
         top: 0;
         left: ${(props.index * 100) / GRID_SIZE}%;
         width: ${100 / GRID_SIZE}%;

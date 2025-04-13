@@ -14,7 +14,7 @@ import {
     HighScoreValue,
     ButtonsContainer,
     Button,
-    NewHighScoreLabel
+    NewHighScoreLabel,
 } from './GameOverModal.styles';
 
 interface Props {
@@ -34,7 +34,7 @@ export const GameOverModal: FC<Props> = ({
     onRestart,
     onWatchAd,
     onShare,
-    onMenu
+    onMenu,
 }) => {
     useEffect(() => {
         document.body.style.overflow = 'hidden';
@@ -42,23 +42,21 @@ export const GameOverModal: FC<Props> = ({
             document.body.style.overflow = 'auto';
         };
     }, []);
-    
+
     return (
         <ModalOverlay>
             <ModalContent>
                 <ModalHeader>
                     <Title>Игра окончена</Title>
-                    {isNewHighScore && (
-                        <NewHighScoreLabel>Новый рекорд!</NewHighScoreLabel>
-                    )}
+                    {isNewHighScore && <NewHighScoreLabel>Новый рекорд!</NewHighScoreLabel>}
                 </ModalHeader>
-                
+
                 <ScoreContainer>
                     <ScoreRow>
                         <ScoreLabel>Ваш счет:</ScoreLabel>
                         <ScoreValue>{score.toLocaleString()}</ScoreValue>
                     </ScoreRow>
-                    
+
                     <ScoreRow>
                         <ScoreLabel>Рекорд:</ScoreLabel>
                         <HighScoreValue isNew={isNewHighScore}>
@@ -66,29 +64,19 @@ export const GameOverModal: FC<Props> = ({
                         </HighScoreValue>
                     </ScoreRow>
                 </ScoreContainer>
-                
+
                 <ButtonsContainer>
                     <Button primary onClick={onRestart}>
                         Играть снова
                     </Button>
-                    
+
                     {onWatchAd && (
-                        <Button onClick={onWatchAd}>
-                            Смотреть рекламу для бонусных фигур
-                        </Button>
+                        <Button onClick={onWatchAd}>Смотреть рекламу для бонусных фигур</Button>
                     )}
-                    
-                    {onShare && (
-                        <Button onClick={onShare}>
-                            Поделиться результатом
-                        </Button>
-                    )}
-                    
-                    {onMenu && (
-                        <Button onClick={onMenu}>
-                            Главное меню
-                        </Button>
-                    )}
+
+                    {onShare && <Button onClick={onShare}>Поделиться результатом</Button>}
+
+                    {onMenu && <Button onClick={onMenu}>Главное меню</Button>}
                 </ButtonsContainer>
             </ModalContent>
         </ModalOverlay>

@@ -12,7 +12,7 @@ import {
     ComboLabel,
     ComboValue,
     ComboText,
-    PointsPopup
+    PointsPopup,
 } from './Score.styles';
 
 interface Props {
@@ -39,12 +39,12 @@ export const Score: FC<Props> = ({
     comboText,
     isNewHighScore = false,
     scoreAnimation,
-    horizontal = false
+    horizontal = false,
 }) => {
     const prevScoreRef = useRef(currentScore);
     const scoreRef = useRef<HTMLDivElement>(null);
     const [highlight, setHighlight] = React.useState(false);
-    
+
     useEffect(() => {
         if (currentScore > prevScoreRef.current) {
             setHighlight(true);
@@ -53,7 +53,7 @@ export const Score: FC<Props> = ({
         }
         prevScoreRef.current = currentScore;
     }, [currentScore]);
-    
+
     return (
         <ScoreContainer $horizontal={horizontal}>
             <ScoreRow $horizontal={horizontal}>
@@ -67,7 +67,7 @@ export const Score: FC<Props> = ({
                     </ComboText>
                 )}
             </ScoreRow>
-            
+
             <ScoreRow $horizontal={horizontal}>
                 <ScoreLabel $horizontal={horizontal}>Рекорд</ScoreLabel>
                 <HighScoreValue $horizontal={horizontal}>
@@ -75,20 +75,20 @@ export const Score: FC<Props> = ({
                     {isNewHighScore && ' 🏆'}
                 </HighScoreValue>
             </ScoreRow>
-            
+
             <ComboContainer $horizontal={horizontal}>
                 <ComboLabel $horizontal={horizontal}>Комбо</ComboLabel>
                 <ComboValue active={combo > 0} $horizontal={horizontal}>
                     {combo > 0 ? `×${comboMultiplier.toFixed(1)}` : '-'}
                 </ComboValue>
             </ComboContainer>
-            
+
             {!horizontal && (
                 <ComboText active={combo > 0} $horizontal={horizontal}>
                     {comboText}
                 </ComboText>
             )}
-            
+
             {scoreAnimation && (
                 <PointsPopup
                     show={scoreAnimation.visible}

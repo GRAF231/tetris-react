@@ -3,21 +3,21 @@
  */
 
 // Основные цвета
-export const PRIMARY = '#3F51B5';       // Основной цвет (синий индиго)
-export const SECONDARY = '#FF4081';     // Акцентный цвет (розовый)
-export const BACKGROUND = '#FAFAFA';    // Фон приложения (почти белый)
-export const TEXT_PRIMARY = '#212121';  // Основной цвет текста (почти черный)
+export const PRIMARY = '#3F51B5'; // Основной цвет (синий индиго)
+export const SECONDARY = '#FF4081'; // Акцентный цвет (розовый)
+export const BACKGROUND = '#FAFAFA'; // Фон приложения (почти белый)
+export const TEXT_PRIMARY = '#212121'; // Основной цвет текста (почти черный)
 export const TEXT_SECONDARY = '#757575'; // Вторичный цвет текста (серый)
 
 // Цвета для состояний
-export const SUCCESS = '#4CAF50';       // Успех (зеленый)
-export const ERROR = '#F44336';         // Ошибка (красный)
-export const WARNING = '#FFC107';       // Предупреждение (желтый)
-export const INFO = '#2196F3';          // Информация (синий)
+export const SUCCESS = '#4CAF50'; // Успех (зеленый)
+export const ERROR = '#F44336'; // Ошибка (красный)
+export const WARNING = '#FFC107'; // Предупреждение (желтый)
+export const INFO = '#2196F3'; // Информация (синий)
 
 // Цвета интерфейса
-export const GRID_BACKGROUND = '#EEEEEE';  // Фон сетки
-export const GRID_BORDER = '#BDBDBD';      // Граница сетки
+export const GRID_BACKGROUND = '#EEEEEE'; // Фон сетки
+export const GRID_BORDER = '#BDBDBD'; // Граница сетки
 export const MODAL_BACKGROUND = 'rgba(0, 0, 0, 0.5)'; // Фон модальных окон
 
 // Градиенты

@@ -9,7 +9,7 @@ import {
     PreviewTitle,
     ShapesContainer,
     ShapeWrapper,
-    NoShapesMessage
+    NoShapesMessage,
 } from './Preview.styles';
 
 interface Props {
@@ -47,15 +47,15 @@ export const Preview: FC<Props> = ({
     dragPosition,
     registerShapeRef,
     horizontal = false,
-    returningToOrigin = false
+    returningToOrigin = false,
 }) => {
     return (
         <PreviewContainer $horizontal={horizontal}>
             {!horizontal && <PreviewTitle>Доступные фигуры</PreviewTitle>}
-            
+
             {shapes.length > 0 ? (
                 <ShapesContainer $horizontal={horizontal}>
-                    {shapes.map(shape => (
+                    {shapes.map((shape) => (
                         <ShapeWrapper
                             key={shape.id}
                             $horizontal={horizontal}
@@ -69,20 +69,22 @@ export const Preview: FC<Props> = ({
                                 dragPosition={
                                     isDragging && draggingShapeId === shape.id && dragPosition
                                         ? {
-                                            x: dragPosition.x,
-                                            y: dragPosition.y,
-                                            initialX: dragPosition.initialX,
-                                            initialY: dragPosition.initialY,
-                                            startX: dragPosition.startX,
-                                            startY: dragPosition.startY
-                                        }
+                                              x: dragPosition.x,
+                                              y: dragPosition.y,
+                                              initialX: dragPosition.initialX,
+                                              initialY: dragPosition.initialY,
+                                              startX: dragPosition.startX,
+                                              startY: dragPosition.startY,
+                                          }
                                         : undefined
                                 }
                                 onDragStart={onDragStart}
                                 onDragMove={onDragMove}
                                 onDragEnd={onDragEnd}
                                 registerRef={registerShapeRef}
-                                returningToOrigin={returningToOrigin && draggingShapeId === shape.id}
+                                returningToOrigin={
+                                    returningToOrigin && draggingShapeId === shape.id
+                                }
                             />
                         </ShapeWrapper>
                     ))}

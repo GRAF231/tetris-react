@@ -30,5 +30,5 @@ export default tseslint.config(
             ],
         },
     },
-    prettierConfig.configs.recommended,
+    prettierConfig,
 )

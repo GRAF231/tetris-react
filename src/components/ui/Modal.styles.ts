@@ -50,20 +50,28 @@ export const ModalContainer = styled.div<{ size: ModalSize }>`
     background-color: white;
     border-radius: 12px;
     box-shadow: ${SHADOWS.LARGE};
-    width: ${props => {
+    width: ${(props) => {
         switch (props.size) {
-            case 'small': return '90%';
-            case 'medium': return '90%';
-            case 'large': return '95%';
-            default: return '90%';
+            case 'small':
+                return '90%';
+            case 'medium':
+                return '90%';
+            case 'large':
+                return '95%';
+            default:
+                return '90%';
         }
     }};
-    max-width: ${props => {
+    max-width: ${(props) => {
         switch (props.size) {
-            case 'small': return '400px';
-            case 'medium': return '600px';
-            case 'large': return '800px';
-            default: return '600px';
+            case 'small':
+                return '400px';
+            case 'medium':
+                return '600px';
+            case 'large':
+                return '800px';
+            default:
+                return '600px';
         }
     }};
     max-height: 90vh;
@@ -72,7 +80,7 @@ export const ModalContainer = styled.div<{ size: ModalSize }>`
     overflow: hidden;
     animation: slideIn 0.3s ease-out;
     ${slideIn}
-    
+
     @media (max-width: 600px) {
         width: 95%;
     }
@@ -83,7 +91,7 @@ export const ModalHeader = styled.div<{ hasClose: boolean }>`
     border-bottom: 1px solid #eee;
     display: flex;
     align-items: center;
-    justify-content: ${props => props.hasClose ? 'space-between' : 'center'};
+    justify-content: ${(props) => (props.hasClose ? 'space-between' : 'center')};
     position: relative;
 `;
 
@@ -109,16 +117,16 @@ export const CloseButton = styled.button`
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    
+
     &:hover {
         color: ${TEXT_PRIMARY};
         background-color: rgba(0, 0, 0, 0.05);
     }
-    
+
     &:active {
         background-color: rgba(0, 0, 0, 0.1);
     }
-    
+
     &::before {
         content: '×';
     }

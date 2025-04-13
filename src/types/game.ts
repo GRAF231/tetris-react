@@ -6,14 +6,14 @@
  * Перечисление типов фигур
  */
 export enum ShapeType {
-    SINGLE = 'SINGLE',       // одиночный блок
-    LINE_2 = 'LINE_2',       // линия из 2 блоков
-    LINE_3 = 'LINE_3',       // линия из 3 блоков
-    L_SHAPE = 'L_SHAPE',     // Г-образная фигура
-    SQUARE = 'SQUARE',       // квадрат из 4 блоков
-    T_SHAPE = 'T_SHAPE',     // Т-образная фигура
-    CROSS = 'CROSS',         // крестообразная фигура
-    Z_SHAPE = 'Z_SHAPE',     // Z-образная фигура
+    SINGLE = 'SINGLE', // одиночный блок
+    LINE_2 = 'LINE_2', // линия из 2 блоков
+    LINE_3 = 'LINE_3', // линия из 3 блоков
+    L_SHAPE = 'L_SHAPE', // Г-образная фигура
+    SQUARE = 'SQUARE', // квадрат из 4 блоков
+    T_SHAPE = 'T_SHAPE', // Т-образная фигура
+    CROSS = 'CROSS', // крестообразная фигура
+    Z_SHAPE = 'Z_SHAPE', // Z-образная фигура
 }
 
 /**

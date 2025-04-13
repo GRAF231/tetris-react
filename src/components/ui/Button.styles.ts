@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { PRIMARY, SECONDARY, GRADIENTS, SHADOWS } from '../../constants/colors';
+import { PRIMARY, GRADIENTS, SHADOWS } from '../../constants/colors';
 import { ButtonVariant, ButtonSize } from './Button';
 
 // Базовые стили для всех кнопок
@@ -16,13 +16,13 @@ export const baseButtonStyles = css`
     font-family: inherit;
     position: relative;
     overflow: hidden;
-    
+
     &:disabled {
         opacity: 0.6;
         cursor: not-allowed;
         pointer-events: none;
     }
-    
+
     &:active {
         transform: translateY(1px);
     }
@@ -44,7 +44,7 @@ export const buttonSizeStyles = {
         padding: 12px 24px;
         font-size: 18px;
         height: 52px;
-    `
+    `,
 };
 
 // Стили для вариантов кнопок
@@ -53,12 +53,12 @@ export const buttonVariantStyles = {
         background: ${GRADIENTS.PRIMARY};
         color: white;
         box-shadow: ${SHADOWS.MEDIUM};
-        
+
         &:hover {
             box-shadow: ${SHADOWS.LARGE};
             transform: translateY(-2px);
         }
-        
+
         &:active {
             box-shadow: ${SHADOWS.SMALL};
             transform: translateY(0);
@@ -68,12 +68,12 @@ export const buttonVariantStyles = {
         background: ${GRADIENTS.SECONDARY};
         color: white;
         box-shadow: ${SHADOWS.MEDIUM};
-        
+
         &:hover {
             box-shadow: ${SHADOWS.LARGE};
             transform: translateY(-2px);
         }
-        
+
         &:active {
             box-shadow: ${SHADOWS.SMALL};
             transform: translateY(0);
@@ -83,11 +83,11 @@ export const buttonVariantStyles = {
         background: transparent;
         color: ${PRIMARY};
         border: 2px solid ${PRIMARY};
-        
+
         &:hover {
             background: rgba(63, 81, 181, 0.05);
         }
-        
+
         &:active {
             background: rgba(63, 81, 181, 0.1);
         }
@@ -97,15 +97,15 @@ export const buttonVariantStyles = {
         color: ${PRIMARY};
         padding-left: 8px;
         padding-right: 8px;
-        
+
         &:hover {
             background: rgba(63, 81, 181, 0.05);
         }
-        
+
         &:active {
             background: rgba(63, 81, 181, 0.1);
         }
-    `
+    `,
 };
 
 // Стилизованная кнопка
@@ -115,16 +115,16 @@ export const StyledButton = styled.button<{
     $fullWidth?: boolean;
 }>`
     ${baseButtonStyles}
-    ${props => buttonSizeStyles[props.size]}
-    ${props => buttonVariantStyles[props.variant]}
+    ${(props) => buttonSizeStyles[props.size]}
+    ${(props) => buttonVariantStyles[props.variant]}
     
-    width: ${props => props.$fullWidth ? '100%' : 'auto'};
-    
+    width: ${(props) => (props.$fullWidth ? '100%' : 'auto')};
+
     /* Стиль для иконки внутри кнопки */
     .button-icon {
-        margin-right: ${props => (props.children ? '8px' : '0')};
+        margin-right: ${(props) => (props.children ? '8px' : '0')};
     }
-    
+
     /* Эффект пульсации при клике */
     &:after {
         content: '';
@@ -139,11 +139,11 @@ export const StyledButton = styled.button<{
         transform: scale(1, 1) translate(-50%, -50%);
         transform-origin: 50% 50%;
     }
-    
+
     &:focus:not(:active)::after {
         animation: ripple 0.6s ease-out;
     }
-    
+
     @keyframes ripple {
         0% {
             transform: scale(0, 0) translate(-50%, -50%);

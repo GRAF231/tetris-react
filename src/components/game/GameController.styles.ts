@@ -7,7 +7,7 @@ export const GameContainer = styled.div`
     max-width: 1200px;
     margin: 0 auto;
     padding: 12px;
-    
+
     @media (min-width: 768px) {
         flex-direction: row;
         align-items: flex-start;
@@ -26,7 +26,7 @@ export const SidePanel = styled.div`
     flex-direction: column;
     gap: 12px;
     width: 100%;
-    
+
     @media (min-width: 768px) {
         width: 300px;
         gap: 20px;
@@ -38,7 +38,7 @@ export const MobileLayoutContainer = styled.div`
     flex-direction: column;
     width: 100%;
     height: calc(100vh - 80px); // Учитываем уменьшенную шапку
-    
+
     @media (min-width: 768px) {
         flex-direction: row;
         height: auto;
@@ -47,7 +47,7 @@ export const MobileLayoutContainer = styled.div`
 
 export const MobileScoreContainer = styled.div`
     margin-bottom: 12px;
-    
+
     @media (min-width: 768px) {
         display: none;
     }
@@ -58,7 +58,7 @@ export const MobilePreviewContainer = styled.div`
     flex-direction: row;
     justify-content: center;
     margin-top: auto; // Прижимаем к низу экрана
-    
+
     @media (min-width: 768px) {
         display: none;
     }
@@ -66,7 +66,7 @@ export const MobilePreviewContainer = styled.div`
 
 export const DesktopPreviewContainer = styled.div`
     display: none;
-    
+
     @media (min-width: 768px) {
         display: block;
     }
@@ -74,7 +74,7 @@ export const DesktopPreviewContainer = styled.div`
 
 export const DesktopScoreContainer = styled.div`
     display: none;
-    
+
     @media (min-width: 768px) {
         display: block;
     }

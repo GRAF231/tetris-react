@@ -2,7 +2,7 @@
  * Хук для управления игровым состоянием
  */
 import { useState, useCallback, useEffect } from 'react';
-import { GameState, Grid, Shape } from '../types/game';
+import { GameState, Shape } from '../types/game';
 import { ScoreState } from '../core/scoreSystem';
 import {
     createEmptyGrid,
@@ -10,10 +10,15 @@ import {
     placeShape,
     clearLines,
     canPlaceShape,
-    getAllValidPositions
+    getAllValidPositions,
 } from '../core/gameLogic';
 import { generateRandomShapes } from '../core/shapeGenerator';
-import { createInitialScoreState, updateScore, saveHighScore, loadHighScore } from '../core/scoreSystem';
+import {
+    createInitialScoreState,
+    updateScore,
+    saveHighScore,
+    loadHighScore,
+} from '../core/scoreSystem';
 import { AVAILABLE_SHAPES_COUNT } from '../constants/gameConfig';
 
 /**
@@ -25,7 +30,7 @@ const createInitialState = (): GameState => ({
     score: 0,
     combo: 0,
     isGameOver: false,
-    selectedShape: null
+    selectedShape: null,
 });
 
 /**
@@ -42,20 +47,20 @@ export function useGameState() {
     // Основное состояние игры
     const [gameState, setGameState] = useState<ExtendedGameState>(() => ({
         ...createInitialState(),
-        scoreState: createInitialScoreState(loadHighScore())
+        scoreState: createInitialScoreState(loadHighScore()),
     }));
 
     // Выбор фигуры
     const selectShape = useCallback((shape: Shape | null) => {
-        setGameState(prev => ({
+        setGameState((prev) => ({
             ...prev,
-            selectedShape: shape
+            selectedShape: shape,
         }));
     }, []);
 
     // Размещение фигуры на сетке
     const placeSelectedShape = useCallback((row: number, col: number) => {
-        setGameState(prev => {
+        setGameState((prev) => {
             if (!prev.selectedShape) return prev;
 
             // Размещаем фигуру на сетке
@@ -73,14 +78,16 @@ export function useGameState() {
             );
 
             // Удаляем использованную фигуру из списка доступных
-            const shapeIndex = prev.availableShapes.findIndex(s => s.id === prev.selectedShape?.id);
+            const shapeIndex = prev.availableShapes.findIndex(
+                (s) => s.id === prev.selectedShape?.id
+            );
             let newShapes = [...prev.availableShapes];
-            
+
             if (shapeIndex !== -1) {
                 // Удаляем использованную фигуру из массива
                 newShapes.splice(shapeIndex, 1);
             }
-            
+
             // Если все фигуры использованы, генерируем новые
             if (newShapes.length === 0) {
                 newShapes = generateRandomShapes(AVAILABLE_SHAPES_COUNT);
@@ -102,32 +109,32 @@ export function useGameState() {
                 score: newScoreState.currentScore,
                 combo: newScoreState.combo,
                 isGameOver,
-                scoreState: newScoreState
+                scoreState: newScoreState,
             };
         });
     }, []);
 
     // Начало новой игры
     const startNewGame = useCallback(() => {
-        setGameState(prev => ({
+        setGameState((prev) => ({
             ...createInitialState(),
-            scoreState: createInitialScoreState(prev.scoreState.highScore)
+            scoreState: createInitialScoreState(prev.scoreState.highScore),
         }));
     }, []);
 
     // Метод для добавления новых фигур (после просмотра рекламы)
     const addBonusShapes = useCallback(() => {
-        setGameState(prev => {
+        setGameState((prev) => {
             // Генерируем новые фигуры
             const newShapes = generateRandomShapes(AVAILABLE_SHAPES_COUNT);
-            
+
             // Обновляем статус игры
             const isGameOver = !canPlaceAnyShape(prev.grid, newShapes);
-            
+
             return {
                 ...prev,
                 availableShapes: newShapes,
-                isGameOver
+                isGameOver,
             };
         });
     }, []);
@@ -143,12 +150,12 @@ export function useGameState() {
 
     // Проверка наличия допустимых ходов для каждой доступной фигуры
     const checkValidMovesForShapes = useCallback(() => {
-        return gameState.availableShapes.map(shape => {
+        return gameState.availableShapes.map((shape) => {
             const positions = getAllValidPositions(gameState.grid, shape);
             return {
                 shapeId: shape.id,
                 hasValidMoves: positions.length > 0,
-                validPositionsCount: positions.length
+                validPositionsCount: positions.length,
             };
         });
     }, [gameState.grid, gameState.availableShapes]);
@@ -158,24 +165,29 @@ export function useGameState() {
     useEffect(() => {
         // Если игра уже окончена, ничего не делаем
         if (gameState.isGameOver) return;
-        
+
         // Проверяем, есть ли возможность разместить хотя бы одну фигуру
         const isGameOver = !canPlaceAnyShape(gameState.grid, gameState.availableShapes);
-        
+
         // Если игра окончена, обновляем состояние
         if (isGameOver) {
             saveHighScore(gameState.scoreState.highScore);
-            setGameState(prev => ({ ...prev, isGameOver: true }));
+            setGameState((prev) => ({ ...prev, isGameOver: true }));
         }
-    }, [gameState.grid, gameState.availableShapes, gameState.isGameOver, gameState.scoreState.highScore]);
+    }, [
+        gameState.grid,
+        gameState.availableShapes,
+        gameState.isGameOver,
+        gameState.scoreState.highScore,
+    ]);
 
     // Обновление состояния очков
     const updateScoreState = useCallback((newScoreState: ScoreState) => {
-        setGameState(prev => ({
+        setGameState((prev) => ({
             ...prev,
             score: newScoreState.currentScore,
             combo: newScoreState.combo,
-            scoreState: newScoreState
+            scoreState: newScoreState,
         }));
     }, []);
 
@@ -187,6 +199,6 @@ export function useGameState() {
         addBonusShapes,
         canPlaceShapeAtPosition,
         checkValidMovesForShapes,
-        updateScoreState
+        updateScoreState,
     };
 }

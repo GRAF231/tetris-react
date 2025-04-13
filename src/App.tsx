@@ -34,13 +34,13 @@ type Screen = 'main' | 'game' | 'tutorial' | 'settings' | 'achievements';
 function App() {
     // Текущий активный экран
     const [currentScreen, setCurrentScreen] = useState<Screen>('main');
-    
+
     // Текущий язык
     const [currentLanguage, setCurrentLanguage] = useState('ru');
-    
+
     // Оповещения и сообщения
     const [notification, setNotification] = useState<string | null>(null);
-    
+
     // Эффект для загрузки сохраненного языка
     useEffect(() => {
         try {
@@ -52,7 +52,7 @@ function App() {
             console.error('Failed to load language preference:', e);
         }
     }, []);
-    
+
     // Обработчик изменения языка
     const handleLanguageChange = (languageCode: string) => {
         setCurrentLanguage(languageCode);
@@ -62,38 +62,38 @@ function App() {
             console.error('Failed to save language preference:', e);
         }
     };
-    
+
     // Обработчик для начала игры
     const handleStartGame = () => {
         setCurrentScreen('game');
     };
-    
+
     // Обработчик для открытия туториала
     const handleOpenTutorial = () => {
         setCurrentScreen('tutorial');
     };
-    
+
     // Заглушки для остальных экранов
     const handleOpenSettings = () => {
         setNotification('Настройки будут доступны в следующей версии');
         setTimeout(() => setNotification(null), 3000);
     };
-    
+
     const handleOpenAchievements = () => {
         setNotification('Достижения будут доступны в следующей версии');
         setTimeout(() => setNotification(null), 3000);
     };
-    
+
     // Обработчик для возврата на главный экран
     const handleBackToMenu = () => {
         setCurrentScreen('main');
     };
-    
+
     // Обработчик для завершения туториала
     const handleFinishTutorial = () => {
         setCurrentScreen('main');
     };
-    
+
     // Обработчик для шаринга счета
     const handleShareScore = (score: number) => {
         // Заглушка для функции шаринга
@@ -101,7 +101,7 @@ function App() {
         setNotification(`Делимся счетом: ${score} очков`);
         setTimeout(() => setNotification(null), 3000);
     };
-    
+
     // Рендеринг активного экрана
     const renderActiveScreen = () => {
         switch (currentScreen) {
@@ -117,19 +117,9 @@ function App() {
                     />
                 );
             case 'game':
-                return (
-                    <Game
-                        onBackToMenu={handleBackToMenu}
-                        onShareScore={handleShareScore}
-                    />
-                );
+                return <Game onBackToMenu={handleBackToMenu} onShareScore={handleShareScore} />;
             case 'tutorial':
-                return (
-                    <Tutorial
-                        onFinish={handleFinishTutorial}
-                        onSkip={handleBackToMenu}
-                    />
-                );
+                return <Tutorial onFinish={handleFinishTutorial} onSkip={handleBackToMenu} />;
             default:
                 return (
                     <Main
@@ -143,7 +133,7 @@ function App() {
                 );
         }
     };
-    
+
     // Стили для уведомлений
     const notificationStyle: React.CSSProperties = {
         position: 'fixed',
@@ -158,20 +148,16 @@ function App() {
         boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
         transition: 'opacity 0.3s ease',
         opacity: notification ? 1 : 0,
-        pointerEvents: 'none'
+        pointerEvents: 'none',
     };
-    
+
     return (
         <>
             <GlobalStyle />
             {renderActiveScreen()}
-            
+
             {/* Уведомления */}
-            {notification && (
-                <div style={notificationStyle}>
-                    {notification}
-                </div>
-            )}
+            {notification && <div style={notificationStyle}>{notification}</div>}
         </>
     );
 }

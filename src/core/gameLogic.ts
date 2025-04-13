@@ -1,7 +1,7 @@
 /**
  * Основная игровая логика для "Тетрис-блоки"
  */
-import { Grid, Shape, Cell, PlacementCheck } from '../types/game';
+import { Grid, Shape, PlacementCheck } from '../types/game';
 import { GRID_SIZE } from '../constants/gameConfig';
 import { cloneGrid, isInBounds } from '../utils/stateUtils';
 
@@ -51,7 +51,7 @@ export function canPlaceShape(
                 tempGrid[gridRow][gridCol] = {
                     filled: true,
                     color: shape.color,
-                    id: shape.id
+                    id: shape.id,
                 };
             }
         }
@@ -65,8 +65,8 @@ export function canPlaceShape(
         valid: true,
         linesWillBeFilled: {
             rows: filledRows,
-            cols: filledCols
-        }
+            cols: filledCols,
+        },
     };
 }
 
@@ -78,12 +78,7 @@ export function canPlaceShape(
  * @param startCol Начальная позиция по столбцу
  * @returns Обновленная сетка
  */
-export function placeShape(
-    grid: Grid,
-    shape: Shape,
-    startRow: number,
-    startCol: number
-): Grid {
+export function placeShape(grid: Grid, shape: Shape, startRow: number, startCol: number): Grid {
     const newGrid = cloneGrid(grid);
     const matrix = shape.matrix;
 
@@ -97,7 +92,7 @@ export function placeShape(
                     newGrid[gridRow][gridCol] = {
                         filled: true,
                         color: shape.color,
-                        id: shape.id
+                        id: shape.id,
                     };
                 }
             }
@@ -114,7 +109,7 @@ export function placeShape(
  * @returns true, если строка полностью заполнена
  */
 export function isRowFilled(grid: Grid, rowIndex: number): boolean {
-    return grid[rowIndex].every(cell => cell.filled);
+    return grid[rowIndex].every((cell) => cell.filled);
 }
 
 /**
@@ -124,7 +119,7 @@ export function isRowFilled(grid: Grid, rowIndex: number): boolean {
  * @returns true, если столбец полностью заполнен
  */
 export function isColumnFilled(grid: Grid, colIndex: number): boolean {
-    return grid.every(row => row[colIndex].filled);
+    return grid.every((row) => row[colIndex].filled);
 }
 
 /**
@@ -135,7 +130,7 @@ export function isColumnFilled(grid: Grid, colIndex: number): boolean {
 export function getFilledRows(grid: Grid): number[] {
     return grid
         .map((row, index) => ({ row, index }))
-        .filter(({ row }) => row.every(cell => cell.filled))
+        .filter(({ row }) => row.every((cell) => cell.filled))
         .map(({ index }) => index);
 }
 
@@ -150,10 +145,10 @@ export function getFilledColumns(grid: Grid): number[] {
         .fill(null)
         .map((_, colIndex) => ({
             colIndex,
-            filled: grid.every(row => row[colIndex].filled)
+            filled: grid.every((row) => row[colIndex].filled),
         }))
-        .filter(col => col.filled)
-        .map(col => col.colIndex);
+        .filter((col) => col.filled)
+        .map((col) => col.colIndex);
 }
 
 /**
@@ -180,7 +175,7 @@ export function clearLines(grid: Grid): {
                 newGrid[row][col] = {
                     filled: false,
                     color: undefined,
-                    id: undefined
+                    id: undefined,
                 };
             }
         }
@@ -190,7 +185,7 @@ export function clearLines(grid: Grid): {
         newGrid,
         clearedCells,
         rows: filledRows,
-        cols: filledCols
+        cols: filledCols,
     };
 }
 
@@ -271,7 +266,7 @@ export function getAllValidPositions(
                     col,
                     willClearLines:
                         (result.linesWillBeFilled?.rows.length || 0) > 0 ||
-                        (result.linesWillBeFilled?.cols.length || 0) > 0
+                        (result.linesWillBeFilled?.cols.length || 0) > 0,
                 });
             }
         }

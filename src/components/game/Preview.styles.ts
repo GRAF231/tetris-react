@@ -3,10 +3,10 @@ import { GRID_BACKGROUND, GRID_BORDER } from '../../constants/colors';
 
 export const PreviewContainer = styled.div<{ $horizontal?: boolean }>`
     display: flex;
-    flex-direction: ${props => props.$horizontal ? 'row' : 'column'};
+    flex-direction: ${(props) => (props.$horizontal ? 'row' : 'column')};
     gap: 12px;
     width: 100%;
-    max-width: ${props => props.$horizontal ? '100%' : '300px'};
+    max-width: ${(props) => (props.$horizontal ? '100%' : '300px')};
     padding: 12px;
     background-color: ${GRID_BACKGROUND};
     border: 2px solid ${GRID_BORDER};
@@ -24,11 +24,11 @@ export const PreviewTitle = styled.h3`
 
 export const ShapesContainer = styled.div<{ $horizontal?: boolean }>`
     display: flex;
-    flex-direction: ${props => props.$horizontal ? 'row' : 'column'};
-    gap: ${props => props.$horizontal ? '12px' : '16px'};
+    flex-direction: ${(props) => (props.$horizontal ? 'row' : 'column')};
+    gap: ${(props) => (props.$horizontal ? '12px' : '16px')};
     align-items: center;
-    justify-content: ${props => props.$horizontal ? 'center' : 'flex-start'};
-    height: ${props => props.$horizontal ? '110px' : 'unset'};
+    justify-content: ${(props) => (props.$horizontal ? 'center' : 'flex-start')};
+    height: ${(props) => (props.$horizontal ? '110px' : 'unset')};
     width: 100%;
 `;
 
@@ -38,14 +38,16 @@ export const ShapeWrapper = styled.div<{ $horizontal: boolean; $isSelected: bool
     align-items: center;
     padding: 8px;
     border-radius: 8px;
-    background-color: ${props => props.$isSelected ? 'rgba(100, 200, 255, 0.2)' : 'transparent'};
-    border: 2px solid ${props => props.$isSelected ? 'rgba(100, 200, 255, 0.8)' : 'transparent'};
+    background-color: ${(props) =>
+        props.$isSelected ? 'rgba(100, 200, 255, 0.2)' : 'transparent'};
+    border: 2px solid ${(props) => (props.$isSelected ? 'rgba(100, 200, 255, 0.8)' : 'transparent')};
     transition: all 0.2s ease;
     cursor: pointer;
-    width: ${props => props.$horizontal ? 'calc(33.3% - 8px);' : '100%'};
+    width: ${(props) => (props.$horizontal ? 'calc(33.3% - 8px);' : '100%')};
     flex-shrink: 0;
     &:hover {
-        background-color: ${props => props.$isSelected ? 'rgba(100, 200, 255, 0.2)' : 'rgba(0, 0, 0, 0.05)'};
+        background-color: ${(props) =>
+            props.$isSelected ? 'rgba(100, 200, 255, 0.2)' : 'rgba(0, 0, 0, 0.05)'};
     }
 `;
 

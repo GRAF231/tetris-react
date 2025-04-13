@@ -8,16 +8,20 @@ import { GRID_SIZE } from '../constants/gameConfig';
  * Создает пустую игровую сетку заданного размера
  */
 export function createEmptyGrid(size: number = GRID_SIZE): Grid {
-    return Array(size).fill(null).map(() => 
-        Array(size).fill(null).map(() => ({ filled: false }))
-    );
+    return Array(size)
+        .fill(null)
+        .map(() =>
+            Array(size)
+                .fill(null)
+                .map(() => ({ filled: false }))
+        );
 }
 
 /**
  * Создает копию сетки для иммутабельного обновления
  */
 export function cloneGrid(grid: Grid): Grid {
-    return grid.map(row => [...row.map(cell => ({ ...cell }))]);
+    return grid.map((row) => [...row.map((cell) => ({ ...cell }))]);
 }
 
 /**
@@ -40,22 +44,23 @@ export function isInBounds(grid: Grid, row: number, col: number): boolean {
  * Проверяет, заполнена ли строка полностью
  */
 export function isRowFilled(grid: Grid, rowIndex: number): boolean {
-    return grid[rowIndex].every(cell => cell.filled);
+    return grid[rowIndex].every((cell) => cell.filled);
 }
 
 /**
  * Проверяет, заполнен ли столбец полностью
  */
 export function isColumnFilled(grid: Grid, colIndex: number): boolean {
-    return grid.every(row => row[colIndex].filled);
+    return grid.every((row) => row[colIndex].filled);
 }
 
 /**
  * Находит все заполненные строки в сетке
  */
 export function getFilledRows(grid: Grid): number[] {
-    return grid.map((row, index) => ({ row, index }))
-        .filter(({ row }) => row.every(cell => cell.filled))
+    return grid
+        .map((row, index) => ({ row, index }))
+        .filter(({ row }) => row.every((cell) => cell.filled))
         .map(({ index }) => index);
 }
 
@@ -64,13 +69,14 @@ export function getFilledRows(grid: Grid): number[] {
  */
 export function getFilledColumns(grid: Grid): number[] {
     const columnCount = grid[0].length;
-    return Array(columnCount).fill(null)
+    return Array(columnCount)
+        .fill(null)
         .map((_, colIndex) => ({
             colIndex,
-            filled: grid.every(row => row[colIndex].filled)
+            filled: grid.every((row) => row[colIndex].filled),
         }))
-        .filter(col => col.filled)
-        .map(col => col.colIndex);
+        .filter((col) => col.filled)
+        .map((col) => col.colIndex);
 }
 
 /**
@@ -105,7 +111,7 @@ export function clearFilledLines(grid: Grid): {
         newGrid,
         clearedCells,
         rows: filledRows,
-        cols: filledCols
+        cols: filledCols,
     };
 }
 
@@ -113,30 +119,30 @@ export function clearFilledLines(grid: Grid): {
  * Размещает фигуру на сетке, возвращая новую сетку
  */
 export function placeShapeOnGrid(
-    grid: Grid, 
-    shape: Shape, 
-    startRow: number, 
+    grid: Grid,
+    shape: Shape,
+    startRow: number,
     startCol: number
 ): Grid {
     const newGrid = cloneGrid(grid);
     const matrix = shape.matrix;
-    
+
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
             if (matrix[i][j]) {
                 const gridRow = startRow + i;
                 const gridCol = startCol + j;
-                
+
                 if (isInBounds(grid, gridRow, gridCol)) {
                     newGrid[gridRow][gridCol] = {
                         filled: true,
                         color: shape.color,
-                        id: shape.id
+                        id: shape.id,
                     };
                 }
             }
         }
     }
-    
+
     return newGrid;
 }

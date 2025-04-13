@@ -12,24 +12,25 @@ export const Header = styled.header<{ $compact?: boolean }>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: ${props => props.$compact ? '8px 16px' : '16px 24px'};
+    padding: ${(props) => (props.$compact ? '8px 16px' : '16px 24px')};
     background-color: white;
     box-shadow: ${SHADOWS.SMALL};
     position: relative;
     z-index: 10;
-    height: ${props => props.$compact ? '50px' : 'auto'};
+    height: ${(props) => (props.$compact ? '50px' : 'auto')};
 `;
 
 export const Logo = styled.div<{ $compact?: boolean }>`
-    font-size: ${props => props.$compact ? '18px' : '24px'};
+    font-size: ${(props) => (props.$compact ? '18px' : '24px')};
     font-weight: 700;
     color: ${PRIMARY};
     display: flex;
     align-items: center;
     gap: 8px;
-    
-    svg, img {
-        height: ${props => props.$compact ? '24px' : '32px'};
+
+    svg,
+    img {
+        height: ${(props) => (props.$compact ? '24px' : '32px')};
         width: auto;
     }
 `;
@@ -42,13 +43,13 @@ export const HeaderActions = styled.div`
 
 export const MainContent = styled.main<{ $compact?: boolean }>`
     flex: 1;
-    padding: ${props => props.$compact ? '12px' : '24px'};
+    padding: ${(props) => (props.$compact ? '12px' : '24px')};
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    
+
     @media (max-width: 768px) {
-        padding: ${props => props.$compact ? '8px' : '16px'};
+        padding: ${(props) => (props.$compact ? '8px' : '16px')};
     }
 `;
 

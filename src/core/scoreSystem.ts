@@ -1,7 +1,11 @@
 /**
  * Система подсчета очков для игры "Тетрис-блоки"
  */
-import { BASE_POINTS_PER_CELL, MULTIPLE_LINES_MULTIPLIER, COMBO_MULTIPLIER_INCREMENT } from '../constants/gameConfig';
+import {
+    BASE_POINTS_PER_CELL,
+    MULTIPLE_LINES_MULTIPLIER,
+    COMBO_MULTIPLIER_INCREMENT,
+} from '../constants/gameConfig';
 
 /**
  * Состояние системы очков
@@ -23,7 +27,7 @@ export function createInitialScoreState(savedHighScore?: number): ScoreState {
         highScore: savedHighScore || 0,
         combo: 0,
         lastClearedCells: 0,
-        comboMultiplier: 1
+        comboMultiplier: 1,
     };
 }
 
@@ -33,7 +37,7 @@ export function createInitialScoreState(savedHighScore?: number): ScoreState {
  * @returns Коэффициент множителя для комбо
  */
 export function calculateComboMultiplier(combo: number): number {
-    return 1 + (combo * COMBO_MULTIPLIER_INCREMENT);
+    return 1 + combo * COMBO_MULTIPLIER_INCREMENT;
 }
 
 /**
@@ -56,43 +60,43 @@ export function updateScore(
             ...state,
             combo: 0,
             comboMultiplier: 1,
-            lastClearedCells: 0
+            lastClearedCells: 0,
         };
     }
 
     // Рассчитываем новое комбо
     // Комбо увеличивается только если были очищены ячейки в прошлый раз
     const newCombo = state.lastClearedCells > 0 ? state.combo + 1 : 0;
-    
+
     // Рассчитываем новый множитель комбо
     const comboMultiplier = calculateComboMultiplier(newCombo);
-    
+
     // Рассчитываем базовые очки
     let points = cellsCleared * BASE_POINTS_PER_CELL;
-    
+
     // Применяем множитель за очистку нескольких линий (и строки, и столбцы)
     if (rowsCleared > 0 && colsCleared > 0) {
         points *= MULTIPLE_LINES_MULTIPLIER;
     }
-    
+
     // Применяем множитель комбо
     points *= comboMultiplier;
-    
+
     // Округляем до целого
     const roundedPoints = Math.floor(points);
-    
+
     // Обновляем счет
     const newScore = state.currentScore + roundedPoints;
-    
+
     // Проверяем, не побит ли рекорд
     const newHighScore = Math.max(state.highScore, newScore);
-    
+
     return {
         currentScore: newScore,
         highScore: newHighScore,
         combo: newCombo,
         lastClearedCells: cellsCleared,
-        comboMultiplier
+        comboMultiplier,
     };
 }
 

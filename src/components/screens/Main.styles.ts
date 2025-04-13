@@ -9,7 +9,7 @@ export const MainContainer = styled.div`
     max-width: 800px;
     margin: 0 auto;
     padding: 40px 20px;
-    
+
     @media (min-width: 768px) {
         padding: 60px 20px;
     }
@@ -24,7 +24,7 @@ export const GameTitle = styled.h1`
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    
+
     @media (min-width: 768px) {
         font-size: 48px;
     }
@@ -37,7 +37,7 @@ export const GameSubtitle = styled.h2`
     margin-bottom: 40px;
     text-align: center;
     max-width: 600px;
-    
+
     @media (min-width: 768px) {
         font-size: 22px;
     }
@@ -62,14 +62,15 @@ export const LanguageButton = styled.button<{ active: boolean }>`
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 14px;
-    border: 2px solid ${props => props.active ? PRIMARY : '#ddd'};
-    background-color: ${props => props.active ? 'rgba(63, 81, 181, 0.1)' : 'transparent'};
-    color: ${props => props.active ? PRIMARY : '#666'};
+    border: 2px solid ${(props) => (props.active ? PRIMARY : '#ddd')};
+    background-color: ${(props) => (props.active ? 'rgba(63, 81, 181, 0.1)' : 'transparent')};
+    color: ${(props) => (props.active ? PRIMARY : '#666')};
     cursor: pointer;
     transition: all 0.2s ease;
-    
+
     &:hover {
-        background-color: ${props => props.active ? 'rgba(63, 81, 181, 0.15)' : 'rgba(0, 0, 0, 0.05)'};
+        background-color: ${(props) =>
+            props.active ? 'rgba(63, 81, 181, 0.15)' : 'rgba(0, 0, 0, 0.05)'};
     }
 `;
 
@@ -82,7 +83,7 @@ export const GamePreview = styled.div`
     margin-bottom: 40px;
     box-shadow: ${SHADOWS.MEDIUM};
     overflow: hidden;
-    
+
     img {
         width: 100%;
         height: 100%;

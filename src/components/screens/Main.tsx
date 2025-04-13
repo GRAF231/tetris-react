@@ -11,13 +11,13 @@ import {
     ButtonsContainer,
     LanguageSwitcher,
     LanguageButton,
-    GamePreview
+    GamePreview,
 } from './Main.styles';
 
 const languages = [
     { code: 'ru', name: 'Русский' },
     { code: 'en', name: 'English' },
-    { code: 'tr', name: 'Türkçe' }
+    { code: 'tr', name: 'Türkçe' },
 ];
 
 interface Props {
@@ -35,60 +35,41 @@ export const Main: FC<Props> = ({
     onOpenSettings,
     onOpenAchievements,
     onLanguageChange,
-    currentLanguage = 'ru'
+    currentLanguage = 'ru',
 }) => {
     return (
         <Layout>
             <MainContainer>
                 <GameTitle>Тетрис-блоки</GameTitle>
                 <GameSubtitle>
-                    Увлекательная головоломка, где нужно размещать фигуры на игровой сетке и очищать линии
+                    Увлекательная головоломка, где нужно размещать фигуры на игровой сетке и очищать
+                    линии
                 </GameSubtitle>
-                
+
                 <GamePreview>
                     {/* Здесь будет добавлено изображение или анимация игры */}
                 </GamePreview>
-                
+
                 <ButtonsContainer>
-                    <Button 
-                        variant="primary" 
-                        size="large" 
-                        fullWidth 
-                        onClick={onStartGame}
-                    >
+                    <Button variant="primary" size="large" fullWidth onClick={onStartGame}>
                         Играть
                     </Button>
-                    
-                    <Button 
-                        variant="outline" 
-                        size="medium" 
-                        fullWidth 
-                        onClick={onOpenTutorial}
-                    >
+
+                    <Button variant="outline" size="medium" fullWidth onClick={onOpenTutorial}>
                         Обучение
                     </Button>
-                    
-                    <Button 
-                        variant="outline" 
-                        size="medium" 
-                        fullWidth 
-                        onClick={onOpenSettings}
-                    >
+
+                    <Button variant="outline" size="medium" fullWidth onClick={onOpenSettings}>
                         Настройки
                     </Button>
-                    
-                    <Button 
-                        variant="outline" 
-                        size="medium" 
-                        fullWidth 
-                        onClick={onOpenAchievements}
-                    >
+
+                    <Button variant="outline" size="medium" fullWidth onClick={onOpenAchievements}>
                         Достижения
                     </Button>
                 </ButtonsContainer>
-                
+
                 <LanguageSwitcher>
-                    {languages.map(language => (
+                    {languages.map((language) => (
                         <LanguageButton
                             key={language.code}
                             active={currentLanguage === language.code}

@@ -75,9 +75,6 @@ export const StepDot = styled.div<{ active: boolean; completed: boolean }>`
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: ${props => 
-        props.active ? PRIMARY : 
-        props.completed ? SECONDARY : '#ddd'
-    };
+    background-color: ${(props) => (props.active ? PRIMARY : props.completed ? SECONDARY : '#ddd')};
     transition: all 0.3s ease;
 `;

@@ -33,7 +33,7 @@ export const Shape: FC<Props> = ({
     onDragMove,
     onDragEnd,
     registerRef,
-    returningToOrigin = false
+    returningToOrigin = false,
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const rows = shape.matrix.length;
@@ -41,22 +41,22 @@ export const Shape: FC<Props> = ({
 
     const handleMouseDown = (e: React.MouseEvent) => {
         if (!draggable || !onDragStart) return;
-        
+
         if (returningToOrigin) return;
-        
+
         e.preventDefault();
         e.stopPropagation();
         onDragStart(shape.id, e.clientX, e.clientY);
-        
+
         document.addEventListener('mousemove', handleMouseMove);
         document.addEventListener('mouseup', handleMouseUp);
     };
-    
+
     const handleTouchStart = (e: React.TouchEvent) => {
         if (!draggable || !onDragStart) return;
-        
+
         if (returningToOrigin) return;
-        
+
         const touch = e.touches[0];
         onDragStart(shape.id, touch.clientX, touch.clientY);
 
@@ -67,36 +67,36 @@ export const Shape: FC<Props> = ({
         if (!onDragMove) return;
         onDragMove(e.clientX, e.clientY);
     };
-    
+
     const handleTouchMove = (e: React.TouchEvent) => {
         if (!onDragMove) return;
         const touch = e.touches[0];
         onDragMove(touch.clientX, touch.clientY);
-        
+
         e.stopPropagation();
     };
-    
+
     const handleMouseUp = (e: MouseEvent) => {
         try {
             if (!onDragEnd) {
                 return;
             }
-            
+
             onDragEnd(e.clientX, e.clientY);
         } catch (error) {
-            console.error("Error in handleMouseUp:", error);
+            console.error('Error in handleMouseUp:', error);
         } finally {
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseup', handleMouseUp);
         }
     };
-    
+
     const handleTouchEnd = (e: React.TouchEvent) => {
         try {
             if (!onDragEnd) {
                 return;
             }
-            
+
             if (e.changedTouches && e.changedTouches.length > 0) {
                 const touch = e.changedTouches[0];
                 onDragEnd(touch.clientX, touch.clientY);
@@ -104,28 +104,28 @@ export const Shape: FC<Props> = ({
                 onDragEnd();
             }
         } catch (error) {
-            console.error("Error in handleTouchEnd:", error);
+            console.error('Error in handleTouchEnd:', error);
         }
     };
-    
+
     useEffect(() => {
         if (registerRef && containerRef.current) {
             registerRef(shape.id, containerRef.current);
         }
     }, [shape.id, registerRef]);
-    
+
     useEffect(() => {
         if (returningToOrigin) {
-            console.log("Shape returning to origin:", shape.id, dragPosition);
+            console.log('Shape returning to origin:', shape.id, dragPosition);
         }
     }, [returningToOrigin, shape.id, dragPosition]);
-    
+
     // Рассчитываем смещение для трансформации
     const calculateTranslation = () => {
         if (!dragPosition) return { x: 0, y: 0 };
-        
-        const { x: currentX, y: currentY, startX = 0, startY = 0, initialX = 0, initialY = 0 } = dragPosition;
-        
+
+        const { x: currentX, y: currentY, startX = 0, startY = 0 } = dragPosition;
+
         if (returningToOrigin) {
             // Если возвращаемся в исходное положение - смещение 0
             return { x: 0, y: 0 };
@@ -135,12 +135,12 @@ export const Shape: FC<Props> = ({
             const deltaY = currentY - startY;
             return { x: deltaX, y: deltaY };
         }
-        
+
         return { x: 0, y: 0 };
     };
-    
+
     const { x: translateX, y: translateY } = calculateTranslation();
-    
+
     return (
         <ShapeContainer
             ref={containerRef}

@@ -1,5 +1,11 @@
 import styled from 'styled-components';
-import { PRIMARY, SECONDARY, MODAL_BACKGROUND, TEXT_PRIMARY, GRADIENTS } from '../../constants/colors';
+import {
+    PRIMARY,
+    SECONDARY,
+    MODAL_BACKGROUND,
+    TEXT_PRIMARY,
+    GRADIENTS,
+} from '../../constants/colors';
 
 // Анимации
 const fadeIn = `
@@ -98,13 +104,13 @@ export const ScoreValue = styled.div`
 export const HighScoreValue = styled.div<{ isNew: boolean }>`
     font-size: 24px;
     font-weight: 700;
-    color: ${props => props.isNew ? SECONDARY : PRIMARY};
+    color: ${(props) => (props.isNew ? SECONDARY : PRIMARY)};
     display: flex;
     align-items: center;
     gap: 8px;
-    
+
     &::after {
-        content: '${props => props.isNew ? '🏆' : ''}';
+        content: '${(props) => (props.isNew ? '🏆' : '')}';
         font-size: 22px;
     }
 `;
@@ -125,8 +131,10 @@ export const Button = styled.button<{ primary?: boolean }>`
     cursor: pointer;
     transition: all 0.2s ease;
     border: none;
-    
-    ${props => props.primary ? `
+
+    ${(props) =>
+        props.primary
+            ? `
         background: ${GRADIENTS.PRIMARY};
         color: white;
         
@@ -140,7 +148,8 @@ export const Button = styled.button<{ primary?: boolean }>`
             transform: translateY(0);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-    ` : `
+    `
+            : `
         background-color: #f0f0f0;
         color: ${TEXT_PRIMARY};
         
@@ -164,7 +173,7 @@ export const NewHighScoreLabel = styled.div`
     background-color: rgba(255, 64, 129, 0.1);
     margin-top: -8px;
     animation: pulse 1.5s infinite;
-    
+
     @keyframes pulse {
         0% {
             opacity: 0.7;
