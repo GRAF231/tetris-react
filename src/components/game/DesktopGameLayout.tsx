@@ -3,8 +3,6 @@ import { Shape } from '../../types/game';
 import Grid from './Grid';
 import Preview from './Preview';
 import Score from './Score';
-import GhostShape from './GhostShape';
-import LineHighlighter from './LineHighlighter';
 import {
     GridContainer,
     SidePanel,
@@ -81,23 +79,15 @@ export const DesktopGameLayout: FC<DesktopGameLayoutProps> = ({
 }) => {
     return (
         <>
-            <GridContainer ref={gridRef}>
+            <GridContainer>
                 <Grid
                     grid={grid}
+                    gridRef={gridRef}
                     selectedShape={selectedShape}
                     ghostPosition={ghostPosition}
                     highlightedLines={highlightedLines}
                     onCellClick={onCellClick}
                 />
-                {ghostPosition && selectedShape && (
-                    <GhostShape
-                        shape={selectedShape}
-                        row={ghostPosition.row}
-                        col={ghostPosition.col}
-                        valid={ghostPosition.valid}
-                    />
-                )}
-                <LineHighlighter grid={grid} highlightedLines={highlightedLines} />
             </GridContainer>
 
             <SidePanel>

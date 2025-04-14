@@ -3,7 +3,7 @@
  */
 import React, { FC, useRef, useCallback } from 'react';
 import { Grid as GridType, Shape } from '../../types/game';
-import { GridContainer, Cell, GhostShape, LineHighlighter } from './Grid.styles';
+import { GridContainer, Cell, GhostShape, HighlightCell } from './Grid.styles';
 
 interface LineHighlight {
     type: 'row' | 'column';
@@ -12,6 +12,7 @@ interface LineHighlight {
 
 interface Props {
     grid: GridType;
+    gridRef: React.RefObject<HTMLDivElement | null>;
     selectedShape: Shape | null;
     ghostPosition: { row: number; col: number; valid: boolean } | null;
     highlightedLines: LineHighlight[];
@@ -20,12 +21,12 @@ interface Props {
 
 export const Grid: FC<Props> = ({
     grid,
+    gridRef,
     selectedShape,
     ghostPosition,
     highlightedLines,
     onCellClick,
 }) => {
-    const gridRef = useRef<HTMLDivElement>(null);
     const cellRefs = useRef<Record<string, HTMLElement | null>>({});
 
     const registerCellRef = useCallback(
@@ -71,17 +72,16 @@ export const Grid: FC<Props> = ({
                             selectedShape?.matrix[rowIndex - ghostPosition.row]?.[
                                 colIndex - ghostPosition.col
                             ] && <GhostShape valid={ghostPosition.valid} />}
+
+                        {/* Подсветка ячейки, если она будет очищена */}
+                        {highlightedLines.some(
+                            (line) =>
+                                (line.type === 'row' && line.index === rowIndex) ||
+                                (line.type === 'column' && line.index === colIndex)
+                        ) && <HighlightCell />}
                     </Cell>
                 ))
             )}
-
-            {highlightedLines.map((line, index) => (
-                <LineHighlighter
-                    key={`${line.type}-${line.index}-${index}`}
-                    type={line.type}
-                    index={line.index}
-                />
-            ))}
         </GridContainer>
     );
 };

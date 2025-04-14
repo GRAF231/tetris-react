@@ -74,24 +74,34 @@ export const GhostShape = styled.div<{ valid: boolean }>`
     z-index: 2;
 `;
 
-export const LineHighlighter = styled.div<{ type: 'row' | 'column'; index: number }>`
+export const HighlightCell = styled.div`
     position: absolute;
-    background-color: rgba(255, 255, 0, 0.3);
-    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background-color: rgba(255, 215, 0, 0.5); /* Более яркий золотой цвет */
     pointer-events: none;
+    z-index: 1;
+    animation: highlight-effects 0.8s infinite alternate;
+    box-shadow: 0 0 8px 2px rgba(255, 215, 0, 0.6); /* Добавляем свечение */
 
-    ${(props) =>
-        props.type === 'row'
-            ? `
-        top: ${(props.index * 100) / GRID_SIZE}%;
-        left: 0;
-        width: 100%;
-        height: ${100 / GRID_SIZE}%;
-    `
-            : `
-        top: 0;
-        left: ${(props.index * 100) / GRID_SIZE}%;
-        width: ${100 / GRID_SIZE}%;
-        height: 100%;
-    `}
+    @keyframes highlight-effects {
+        0% {
+            transform: scale(0.95) rotate(-1deg);
+            opacity: 0.6;
+            background-color: rgba(255, 215, 0, 0.5);
+        }
+        50% {
+            transform: scale(1.05) rotate(1deg);
+            opacity: 0.8;
+            background-color: rgba(255, 165, 0, 0.6); /* Меняем цвет в середине анимации */
+        }
+        100% {
+            transform: scale(0.95) rotate(-1deg);
+            opacity: 0.6;
+            background-color: rgba(255, 69, 0, 0.5); /* Оранжево-красный в конце */
+        }
+    }
 `;
